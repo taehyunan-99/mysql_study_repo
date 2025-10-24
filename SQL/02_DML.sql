@@ -28,6 +28,8 @@ VALUES ("C001", "커피머신", 120000, 1);
 SELECT * FROM customer;
 SELECT * FROM orders;
 
+# ==============================================================================================================================
+
 # DDL 종합연습 및 INSERT
 # DB 생성 및 지정
 CREATE DATABASE codingon_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -82,6 +84,8 @@ VALUES
 # 데이터 조회
 SELECT * FROM class;
 SELECT * FROM student;
+
+# ==============================================================================================================================
 
 # SELECT + WHERE 사용
 # SELECT 컬럼명 FROM 테이블 WHERE 조건;
@@ -155,13 +159,3 @@ SELECT class_id, MIN(age) min_age FROM student GROUP BY class_id HAVING MIN(age)
 SELECT gender, (MAX(age) - MIN(age)) age_gap FROM student GROUP BY gender HAVING (MAX(age) - MIN(age)) >= 3;
 # 7.
 SELECT class_id, AVG(age) avg_age FROM student GROUP BY class_id HAVING AVG(age) >= 24 ORDER BY avg_age DESC;
-
-
-
-
-
-
-
-
-
-

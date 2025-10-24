@@ -24,6 +24,8 @@ DROP TABLE user;
 # DB 삭제
 DROP DATABASE test_db;
 
+# ==============================================================================================================================
+
 # 실습1. DDL 연습하기
 # 데이터베이스 생성
 CREATE DATABASE my_shop CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -57,6 +59,8 @@ CREATE TABLE orders (
 
 # 제약 조건 확인 방법
 SELECT CONSTRAINT_NAME FROM information_schema.KEY_COLUMN_USAGE WHERE TABLE_NAME = "orders";
+
+# ==============================================================================================================================
 
 # 실습2. DDL 실습
 # 데이터베이스 생성
@@ -95,5 +99,3 @@ ON DELETE SET NULL;
 # 테이블 확인
 DESC students;
 DESC professors;
-
-
