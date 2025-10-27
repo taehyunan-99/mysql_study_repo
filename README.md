@@ -11,7 +11,8 @@ mysql_study_repo/
 │   ├── 03_DML2.sql     # DML - UPDATE, DELETE, 변수
 │   ├── 04_DCL.sql      # DCL (Data Control Language)
 │   ├── 05_JOIN.sql     # JOIN - 테이블 생성 및 데이터 추가
-│   └── 06_JOIN2.sql    # JOIN - 다양한 JOIN 실습
+│   ├── 06_JOIN2.sql    # JOIN - 다양한 JOIN 실습
+│   └── 07_FUNCTION.sql # 함수 - 문자열, 수학, 날짜, 조건, 형변환
 └── README.md
 ```
 
@@ -25,10 +26,21 @@ mysql_study_repo/
 <br/>
 
 ### 📝 DML (Data Manipulation Language)
+#### 데이터 추가 및 조회
 - **INSERT**: 단일/다중 데이터 추가, 필드명 생략 가능, `AUTO_INCREMENT` 자동 처리
 - **SELECT**: 데이터 조회, `WHERE`로 조건 필터링, `BETWEEN`, `IN`, `LIKE`, `IS NULL` 등 다양한 조건 사용
 - **정렬/제한**: `ORDER BY`로 정렬, `LIMIT`으로 개수 제한, `DISTINCT`로 중복 제거
-- **집계**: `GROUP BY`로 그룹화, `HAVING`으로 그룹 조건, `COUNT()`, `AVG()`, `MIN()`, `MAX()` 등 집계 함수
+
+<br/>
+
+#### 집계 및 그룹화
+- **GROUP BY**: 데이터 그룹화로 카테고리별 통계 생성
+- **HAVING**: 그룹화된 결과에 조건 적용
+- **집계 함수**: `COUNT()`, `AVG()`, `SUM()`, `MIN()`, `MAX()` 등으로 데이터 요약
+
+<br/>
+
+#### 데이터 수정 및 삭제
 - **UPDATE**: 데이터 수정, `WHERE` 조건으로 대상 지정
 - **DELETE**: 데이터 삭제, `AUTO_INCREMENT`는 초기화되지 않음
 - **변수**: `SET @변수명 = 값` 또는 `SELECT @변수명 := 값`으로 선언, 문자열은 `COLLATE` 지정 필요
@@ -53,5 +65,40 @@ mysql_study_repo/
 
 <br/>
 
+### ⚡ 함수 (Functions)
+#### 문자열 함수
+- **문자열 결합**: `CONCAT()`, `CONCAT_WS()`로 문자열 연결
+- **문자열 추출**: `LEFT()`, `SUBSTRING()`으로 일부 추출, `SUBSTRING_INDEX()`로 구분자 기준 분리
+- **문자열 변환**: `UPPER()`로 대문자 변환, `REPLACE()`로 일부 문자열 변경
+
+<br/>
+
+#### 수학 함수
+- **반올림/올림/내림**: `ROUND()`, `CEIL()`, `FLOOR()`로 소수점 처리
+- **연산**: `MOD()`로 나머지, `ABS()`로 절댓값
+- **난수 생성**: `RAND()`로 0~1 사이의 난수 생성
+
+<br/>
+
+#### 날짜 함수
+- **현재 날짜/시간**: `NOW()`, `CURDATE()`, `CURTIME()`으로 현재 정보 조회
+- **날짜 연산**: `DATEDIFF()`로 날짜 차이 계산, `DATE_ADD()`로 날짜 더하기
+- **날짜 추출**: `YEAR()`, `MONTH()`, `DAY()`로 날짜 구성 요소 추출
+
+<br/>
+
+#### 조건 함수
+- **IF()**: 단순 조건 분기 처리
+- **IFNULL()**: NULL 값 처리 및 대체
+- **CASE WHEN**: 복잡한 다중 조건 분기 (순차적 평가)
+
+<br/>
+
+#### 형변환
+- **CAST()**: `CAST(값 AS 타입)` 형식으로 데이터 타입 변환
+- **CONVERT()**: `CONVERT(값, 타입)` 형식으로 데이터 타입 변환
+
+<br/>
+
 ---
-*마지막 업데이트: 2025-10-24*
+*마지막 업데이트: 2025-10-27*

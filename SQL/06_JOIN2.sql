@@ -1,4 +1,5 @@
 # JOIN 2
+
 # 테이블 조회
 SELECT * FROM customers;
 SELECT * FROM employees;
@@ -119,5 +120,3 @@ JOIN order_items oi ON o.order_id = oi.order_id
 JOIN products p ON oi.product_id = p.product_id
 WHERE oi.unit_price IS NOT NULL
 ORDER BY oi.order_id, oi.order_item_id;
-
-
