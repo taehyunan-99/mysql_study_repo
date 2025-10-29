@@ -12,7 +12,17 @@ mysql_study_repo/
 │   ├── 04_DCL.sql      # DCL (Data Control Language)
 │   ├── 05_JOIN.sql     # JOIN - 테이블 생성 및 데이터 추가
 │   ├── 06_JOIN2.sql    # JOIN - 다양한 JOIN 실습
-│   └── 07_FUNCTION.sql # 함수 - 문자열, 수학, 날짜, 조건, 형변환
+│   ├── 07_FUNCTION.sql # 함수 - 문자열, 수학, 날짜, 조건, 형변환
+│   └── 08_PYTHON.sql   # Python 연동 테스트용 테이블 생성
+├── python/
+│   ├── python_db.py         # MySQL 기본 연결 및 SELECT
+│   ├── crud.py              # 기본 CRUD 작업 예제
+│   ├── practice_crud.py     # CRUD 함수화 실습
+│   └── app/                 # FastAPI 애플리케이션
+│       ├── main.py          # FastAPI 앱 진입점
+│       ├── db.py            # DB 연결 함수
+│       └── routers/
+│           └── user.py      # 사용자 관련 라우터
 └── README.md
 ```
 
@@ -100,5 +110,28 @@ mysql_study_repo/
 
 <br/>
 
+### 🐍 Python과 MySQL, FastAPI 연동
+#### 기본 연결
+- **mysql.connector**: MySQL 연결 및 쿼리 실행
+- **cursor 객체**: SQL 실행 및 결과 조회
+- **예외 처리**: `try-except-finally`로 안전한 DB 연결 관리
+
+<br/>
+
+#### CRUD 작업
+- **INSERT**: 데이터 추가, `%s` 플레이스홀더로 SQL 인젝션 방지
+- **SELECT**: 데이터 조회, `fetchall()`/`fetchone()`으로 결과 반환
+- **UPDATE**: 데이터 수정, `cursor.rowcount`로 영향받은 행 수 확인
+- **DELETE**: 데이터 삭제, 조건 필터링으로 특정 데이터 제거
+
+<br/>
+
+#### FastAPI 연동
+- **FastAPI 앱**: MySQL과 FastAPI 연동으로 RESTful API 구현
+- **라우터 구조**: `APIRouter`로 엔드포인트 모듈화
+- **DB 연결 함수**: `get_connection()`으로 DB 연결 재사용
+
+<br/>
+
 ---
-*마지막 업데이트: 2025-10-27*
+*마지막 업데이트: 2025-10-29*
