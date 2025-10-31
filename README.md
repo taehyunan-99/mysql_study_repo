@@ -17,12 +17,31 @@ mysql_study_repo/
 ├── python/
 │   ├── python_db.py         # MySQL 기본 연결 및 SELECT
 │   ├── crud.py              # 기본 CRUD 작업 예제
-│   ├── practice_crud.py     # CRUD 함수화 실습
-│   └── app/                 # FastAPI 애플리케이션
+│   └── practice_crud.py     # CRUD 함수화 실습
+├── app/                     # FastAPI 애플리케이션 (mysql.connector)
+│   ├── main.py              # FastAPI 앱 진입점
+│   ├── db.py                # DB 연결 함수
+│   ├── routers/
+│   │   ├── user.py          # 사용자 관련 라우터
+│   │   └── post.py          # 게시글 관련 라우터
+│   └── schemas/
+│       ├── user.py          # User Pydantic 스키마
+│       └── post.py          # Post Pydantic 스키마
+├── orm_app/                 # SQLAlchemy ORM 애플리케이션
+│   └── app/
 │       ├── main.py          # FastAPI 앱 진입점
-│       ├── db.py            # DB 연결 함수
+│       ├── dependencies.py  # 의존성 함수
+│       ├── db/
+│       │   └── session.py   # DB 엔진 및 세션 설정
+│       ├── model/
+│       │   ├── user.py      # User 모델
+│       │   └── post.py      # Post 모델
+│       ├── schemas/
+│       │   ├── user.py      # User Pydantic 스키마
+│       │   └── post.py      # Post Pydantic 스키마
 │       └── routers/
-│           └── user.py      # 사용자 관련 라우터
+│           ├── user.py      # 사용자 관련 라우터
+│           └── post.py      # 게시글 관련 라우터
 └── README.md
 ```
 
@@ -133,5 +152,39 @@ mysql_study_repo/
 
 <br/>
 
+### 🔧 SQLAlchemy ORM
+#### 기본 설정
+- **엔진 생성**: `create_engine()`으로 DB 연결 설정
+- **세션 관리**: `sessionmaker`로 세션 생성, `autoflush=False`, `autocommit=False` 설정
+- **Base 클래스**: `declarative_base()`로 모든 ORM 모델의 기반 클래스 생성
+
+<br/>
+
+#### 모델 정의
+- **User 모델**: `users` 테이블 매핑, `user_id`, `username`, `password`, `name`, `email`, `created_at` 컬럼
+- **Post 모델**: `posts` 테이블 매핑, `id`, `author`, `content`, `created_at` 컬럼
+- **타입 매핑**: `Mapped[]`와 `mapped_column()`으로 컬럼 정의, `String`, `Integer`, `Text`, `DateTime` 타입 사용
+- **제약 조건**: `primary_key`, `unique`, `nullable`, `default` 등 설정
+
+<br/>
+
+#### Pydantic 스키마
+- **UserCreate/PostCreate**: 생성 시 필요한 필드 정의
+- **UserUpdate/PostUpdate**: 수정 시 필요한 필드 정의
+- **데이터 검증**: Pydantic으로 자동 타입 검증 및 변환
+
+<br/>
+
+#### 라우터 및 CRUD
+- **의존성 주입**: `Depends(get_db)`로 세션 자동 주입 및 관리
+- **쿼리 작성 (Legacy)**: `db.query(Model)`로 조회, `filter()`, `order_by()`, `all()`, `first()` 메소드 사용
+- **쿼리 작성 (Modern)**: `select(Model)`로 쿼리 구성, `where()`, `order_by()`로 조건 설정, `db.scalars(stmt)`로 실행
+- **PK 조회**: `db.get(Model, pk_value)`로 Primary Key 기반 빠른 조회
+- **CRUD 작업**: `db.add()`, `db.commit()`, `db.rollback()`, `db.delete()`로 데이터 조작
+- **refresh()**: `db.refresh(instance)`로 DB에서 최신 데이터 동기화 (AUTO_INCREMENT, DEFAULT 값 확인)
+- **예외 처리**: `try-except`로 에러 처리, `HTTPException`으로 에러 응답 (404: Not Found, 400: Bad Request)
+
+<br/>
+
 ---
-*마지막 업데이트: 2025-10-29*
+*마지막 업데이트: 2025-10-31*
